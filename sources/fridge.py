@@ -25,6 +25,7 @@ class Fridge:
     def is_empty(self) -> bool:
         return all(v == 0 for v in self._ingredients.values())
 
+
     def add_ingredient(self, name: str, amount: int) -> None:
         if name not in self._ingredients:
             raise UnknownIngredientException(name)

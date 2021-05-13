@@ -21,6 +21,8 @@ class PizzaMaker:
             return f'I don\'t have enough "{str(e)}"'
         return None
 
+
+
     def take_an_order(self, name: str) -> Tuple[bool, Optional[str]]:
         if name not in RECIPES:
             return False, 'I don\'t know this pizza'
@@ -29,5 +31,5 @@ class PizzaMaker:
         error = self.__try_to_get_ingredients(ingredients)
         if error is not None:
             return False, error
-            self._gain += price  # Gain money
-        return True, None
+        message = self.__apply_sauce(RECIPES[name])
+        return True, message
