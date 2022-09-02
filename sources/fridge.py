@@ -4,6 +4,7 @@ from typing import Dict
 ALL_INGREDIENTS = ('ham', 'mozzarella', 'parmesan', 'gorgonzola', 'onion', 'olive',
                    'pepper', 'garlic', 'basil', 'mushroom', 'cheddar', 'oregano')
 
+ALL_SAUCES = ('tomate', 'ketchup')
 
 class UnknownIngredientException(Exception):
     def __init__(self, ingredient: str):
@@ -18,8 +19,13 @@ class NotEnoughException(Exception):
 
 
 class Fridge:
-    def __init__(self, default: int = 0):
+    def __init__(self, default: int = 0, default_sauce: int = 4):
+        if default_ingredients < 0:
+            default_ingredients = 0
+        if default_sauce < 0:
+            default_sauce = 0
         self._ingredients: Dict[str, int] = dict.fromkeys(ALL_INGREDIENTS, default)
+        self_sauce: Dict[str, int] = dict.fromkeys(ALL_SAUCES, default_sauce)
         self._count: Dict[str, int] = dict.fromkeys(ALL_INGREDIENTS, 0)
 
     @property
